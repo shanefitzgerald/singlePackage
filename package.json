@@ -1,13 +1,13 @@
 {
   "name": "singlePackage",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
-    "publish:packages": "changeset publish",
+    "publish:packages": "npm run build && changeset publish",
     "version:packages": "changeset version"
   },
   "devDependencies": {

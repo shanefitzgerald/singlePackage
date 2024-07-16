@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import { version } from "../package.json";
 
 interface ButtonProps {
   children: ReactNode;
@@ -12,7 +13,7 @@ export const Button = ({ children, className, appName }: ButtonProps) => {
   return (
     <button
       className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
+      onClick={() => alert(`Hello from your ${appName} app! v${version}`)}
     >
       {children}
     </button>

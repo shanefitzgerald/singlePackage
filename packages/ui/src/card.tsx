@@ -1,3 +1,5 @@
+import { version } from "../package.json";
+
 export function Card({
   className,
   title,
@@ -17,7 +19,7 @@ export function Card({
       target="_blank"
     >
       <h2>
-        {title} <span>-&gt;</span>
+        {title} <span>-&gt; v:{version}</span>
       </h2>
       <p>{children}</p>
     </a>

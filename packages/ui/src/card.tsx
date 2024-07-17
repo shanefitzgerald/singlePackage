@@ -19,7 +19,7 @@ export function Card({
       target="_blank"
     >
       <h2>
-        {title} <span>-&gt; v:{version}</span>
+        {title} <span>-&gt; v:{version} fixes bug in card</span>
       </h2>
       <p>{children}</p>
     </a>

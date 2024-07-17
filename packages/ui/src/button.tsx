@@ -13,7 +13,7 @@ export const Button = ({ children, className, appName }: ButtonProps) => {
   return (
     <button
       className={className}
-      onClick={() => alert(`Hello from your ${appName} app! v${version}`)}
+      onClick={() => alert(`Hello from your ${appName} app! v${version} fixed bug`)}
     >
       {children}
     </button>

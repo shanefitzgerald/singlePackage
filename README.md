@@ -1,81 +1,65 @@
-# Turborepo starter
+# Repo to demonstrate changeset and github actions
 
-This is an official starter Turborepo.
+## This repo takes an approach of a single version for all UI packages
 
-## Using this example
+### TESTING:
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
+1. Clone the repo:
+```shell
+  git clone git@github.com:shanefitzgerald/singlePackage.git
 ```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
+2. Create a new branch for a bugfix on the button component:
+```shell
+  git checkout -b "bugfix(button)-fixes-bug-in-button"
 ```
-cd my-turborepo
-pnpm build
+3. Change button component:
+```js
+  onClick={() => alert(`Hello from your ${appName} app! v${version} fixed bug`)}
 ```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
+to
+```js
+  onClick={() => alert(`Hello from your ${appName} app! v${version}`)}
 ```
-cd my-turborepo
-pnpm dev
+4. Commit changes:
+```shell
+  git add .
+  git commit -m "fixes bug in button component"
 ```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
+5. Run changeset bot locally:
+```shell
+  npm run changeset
 ```
-cd my-turborepo
-npx turbo login
+6. Choose changeset changes <br/> <br />
+![changeset before](./docs/changeset_before.png)
+7. Select changeset changes <br/> <br />
+![changeset after](./docs/changeset_after.png)
+8. Select your semver bump:
+   1. Major <br /> <br /> 
+![changeset major](./docs/changeset_major.png)
+   1. Minor <br /> <br />
+![changeset minor](./docs/changeset_minor.png)
+   1. Patch <br /> <br />
+![changeset patch](./docs/changeset_patch.png)
+9. Add summary: <br /> <br />
+![changeset summary](./docs/changeset_summary.png)
+10. Confirm summary: <br /> <br />
+![changeset confirm summary](./docs/changeset_confirmation.png)
+11. Add changeset markdown files generated
+```shell
+git add \*.md
 ```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
+12. Commit:
+```shell
+git commit -m "updates the button component to fix bug"
 ```
-npx turbo link
+13. Push to repo:
+```shell
+git push --set-upstream origin "bugfix(card)-fixes-bug-in-card"
 ```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+14. Open PR
+15. Code Review
+16. Merge PR
+17. Upon merge, a github action will check for changeset markdown files.  If it finds a changeset markdown file it will open a Release PR
+18. Leave this PR open (LOCK IT?) until we are ready to release.  If another PR is opened that fixes a bug in the card component, once it is merged, the github action will take the new fix, apply the correct version and ADD to the release PR currently open.
+19. When it's time to release, merge the release PR
+    // TODO set up the release GH action to kick off on this PR merge

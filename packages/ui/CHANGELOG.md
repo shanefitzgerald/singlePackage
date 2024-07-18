@@ -1,5 +1,12 @@
 # @repo/ui
 
+## 2.0.0
+
+### Major Changes
+
+- 831224c: Update the code comp fixes a bug
+- 868d311: Fixed a bug in the button component
+
 ## 1.0.1
 
 ### Patch Changes
